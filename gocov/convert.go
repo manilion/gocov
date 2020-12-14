@@ -129,16 +129,24 @@ func (c *converter) convertProfile(p *cover.Profile) error {
 	return nil
 }
 
+var pkgMap = map[string]*build.Package{}
+
 // findFile finds the location of the named file in GOROOT, GOPATH etc.
 func findFile(file string) (filename string, pkgpath string, err error) {
 	dir, file := filepath.Split(file)
 	if dir != "" {
 		dir = dir[:len(dir)-1] // drop trailing '/'
 	}
-	pkg, err := build.Import(dir, ".", build.FindOnly)
-	if err != nil {
-		return "", "", fmt.Errorf("can't find %q: %v", file, err)
+
+	pkg, exist := pkgMap[dir]
+	if !exist {
+		pkg, err = build.Import(dir, ".", build.FindOnly)
+		if err != nil {
+			return "", "", fmt.Errorf("can't find %q: %v", file, err)
+		}
+		pkgMap[dir] = pkg
 	}
+
 	return filepath.Join(pkg.Dir, file), pkg.ImportPath, nil
 }
 
