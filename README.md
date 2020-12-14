@@ -2,11 +2,11 @@
 
 Coverage reporting tool for The Go Programming Language
 
-[![Build Status](https://travis-ci.org/axw/gocov.svg?branch=master)](https://travis-ci.org/axw/gocov)
+[![Build Status](https://travis-ci.org/manilion/gocov.svg?branch=master)](https://travis-ci.org/manilion/gocov)
 
 ## Installation
 
-```go get github.com/axw/gocov/gocov```
+```go get github.com/manilion/gocov/gocov```
 
 ## Usage
 

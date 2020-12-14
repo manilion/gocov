@@ -31,7 +31,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/axw/gocov"
+	"github.com/manilion/gocov"
 )
 
 type report struct {
